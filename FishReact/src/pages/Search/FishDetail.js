@@ -10,7 +10,7 @@ function FishDetail() {
     useEffect(() => {
         const fetchFishDetail = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/fish/id', {
+                const response = await axios.get('https://fishboot.azurewebsites.net/fish/id', {
                     params: { id: id }
                 });
                 setFish(response.data);

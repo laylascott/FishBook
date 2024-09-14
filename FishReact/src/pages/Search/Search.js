@@ -48,7 +48,7 @@ function Search() {
     const fetchFishDataByName = async (term) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/fish/name`, {
+            const response = await axios.get(`https://fishboot.azurewebsites.net/fish/name`, {
                 params: { name: term }
             });
             const searchData = response.data;
@@ -65,7 +65,7 @@ function Search() {
     const fetchFishDataBySpecies = async (speciesGroup) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/fish/species`, {
+            const response = await axios.get(`https://fishboot.azurewebsites.net/fish/species`, {
                 params: { species: speciesGroup }
             });
             const speciesData = response.data;

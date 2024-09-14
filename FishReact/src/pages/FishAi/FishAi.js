@@ -61,7 +61,7 @@ const FishAi = () => {
 
   const getBotResponse = async (question) => {
     try {
-      const response = await fetch("https://fishaichat.azurewebsites.net/", {
+      const response = await fetch("https://fishaichat.azurewebsites.net/ask", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

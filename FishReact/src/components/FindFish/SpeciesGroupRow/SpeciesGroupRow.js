@@ -16,12 +16,12 @@ function SpeciesGroupRow({ addToCart, selectedTankSize, heaterRequired, livePlan
             const fetchAllData = async () => {
                 setLoading(true);
                 try {
-                    const fishResponse = await axios.get('http://localhost:8080/fish/filter-by-tank-size', {
+                    const fishResponse = await axios.get('https://fishboot.azurewebsites.net/fish/filter-by-tank-size', {
                         params: { tankSize: selectedTankSize }
                     });
                     const fish = fishResponse.data;
 
-                    const speciesResponse = await axios.get('http://localhost:8080/fish/species-groups');
+                    const speciesResponse = await axios.get('https://fishboot.azurewebsites.net/fish/species-groups');
                     const groups = speciesResponse.data;
                     setSpeciesGroups(groups);
 
