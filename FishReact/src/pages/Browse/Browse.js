@@ -11,7 +11,7 @@ function Browse() {
     // Fetch species groups when the page loads
     const fetchSpeciesGroups = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/fish/species-groups`);
+            const response = await axios.get(`https://fishboot.azurewebsites.net/fish/species-groups`);
             setSpeciesGroups(response.data); // Set the species groups
         } catch (error) {
             console.error('Error fetching species groups:', error);
