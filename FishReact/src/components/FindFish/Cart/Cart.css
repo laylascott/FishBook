@@ -46,8 +46,6 @@
 }
 
 .quantity-controls button, .remove-btn {
-    background-color: #05518b;
-    color: white;
     border: none;
     padding: clamp(5px, 1vw, 10px);
 }

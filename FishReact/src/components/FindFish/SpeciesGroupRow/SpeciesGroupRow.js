@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import CartButtons from './CartButtons';
 import './SpeciesGroupRow.css';
 
 function SpeciesGroupRow({ addToCart, selectedTankSize, heaterRequired, livePlantsRequired, pumpRequired }) {
@@ -127,16 +128,13 @@ function SpeciesGroupRow({ addToCart, selectedTankSize, heaterRequired, livePlan
                                                 src={fish.image || 'https://franklinchristianchurch.com/wp-content/uploads/2023/01/image-coming-soon.jpeg'}
                                                 alt={fish.commonName}
                                             />
-                                            <div className='cart-buttons'>
-                                                <button onClick={() => addToCart({ ...fish, quantity: quantities[fish.id] || 1 })} className='add-btn'>
-                                                    Add to Cart
-                                                </button>
-                                                <div className="controls">
-                                                    <button onClick={() => decreaseQuantity(fish.id)}>-</button>
-                                                    <span>{quantities[fish.id] || 1}</span>
-                                                    <button onClick={() => increaseQuantity(fish.id)}>+</button>
-                                                </div>
-                                            </div>
+                                           <CartButtons
+                                                fish={fish}
+                                                quantities={quantities}
+                                                addToCart={addToCart}
+                                                increaseQuantity={increaseQuantity}
+                                                decreaseQuantity={decreaseQuantity}
+                                            />
                                         </div>
                                     ))
                                 ) : (

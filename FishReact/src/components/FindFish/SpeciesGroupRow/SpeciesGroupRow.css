@@ -64,25 +64,49 @@
 
 .cart-buttons {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    color: #05518b;
-    background-color: white;
-    border: solid 1px #05518b;
-    padding: 5px 2px;
-    border-radius: 12px;
+    justify-content: space-between; /* Ensure proper spacing */
+    background-color: #C5E898;
+    padding: 10px;
+    width: fit-content; /* Adjust the width so it fits content */
+    border-radius: 5px; /* Optional: Add a border radius if needed */
 }
+
+.verticalLine {
+    border-right: 2px solid #000; /* Vertical line color */
+    height: 30px; /* Adjust the height of the line */
+    margin: 0 10px; /* Space around the vertical line */
+}
+
 
 .controls {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 12px;
 }
-.add-btn, .controls button{
-    background-color: white;
-    color: #05518b;
+
+.controls button {
+    background-color: transparent;
     border: none;
+    font-size: 1.5em;
+    margin: 0 5px; /* Spacing between buttons */
+}
+
+.controls span {
+    margin: 0 10px;
+}
+
+.add-btn {
+    font-family: "Klavika-Medium";
+    background-color: #C5E898;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+
+button {
+    cursor: pointer;
 }
 
 /* Thumbnail image styling */

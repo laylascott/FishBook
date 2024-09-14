@@ -1,0 +1,50 @@
+.cart-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.add-btn {
+    background-color: #C5E898;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Aligns text and icon */
+}
+
+.add-to-cart-content {
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    margin-left: 5px; /* Space between "Add to Cart" text and cart icon */
+    transition: transform 0.3s ease;
+}
+
+.cart-icon.added {
+    transform: scale(2.2); /* Scale animation when added to cart */
+}
+
+.verticalLine {
+    border-right: 2px solid #000; /* Vertical line style */
+    height: 30px;
+    margin: 0 10px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.controls button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    margin: 0 5px;
+}
+
+.controls span {
+    margin: 0 10px;
+}
