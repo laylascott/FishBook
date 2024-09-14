@@ -8,15 +8,13 @@ COPY . ./
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install -r requirements.txt
 
-# Set environment variables (if needed, you can uncomment)
+# Set environment variables
 ENV DBUSER=${DBUSER}
 ENV DBPASS=${DBPASS}
 ENV DBHOST=${DBHOST}
 ENV DBPORT=${DBPORT}
 ENV DBSCHEMA=${DBSCHEMA}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
-
-RUN echo $OPENAI_API_KEY
 
 # Expose port 8000 for FastAPI
 EXPOSE 8000
