@@ -1,0 +1,17 @@
+/* Footer.css */
+.footer {
+  background-color: #29ADB2;
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  width: 100%; /* Ensure full width */
+  position: relative; /* Change from fixed to relative for better responsiveness */
+  bottom: 0;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  .footer {
+    position: fixed; /* Fixed only on larger screens */
+  }
+}

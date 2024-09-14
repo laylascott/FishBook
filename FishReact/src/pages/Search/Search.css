@@ -1,0 +1,62 @@
+
+h1{
+    color: #05518b;
+    margin: 20px 50px;
+}
+
+.fish-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px;
+    justify-items: center;
+    padding: 0px 180px ;
+}
+
+.fish-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fish-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit:cover;
+    margin-right: 20px;
+}
+
+.fish-details {
+    flex: 1;
+}
+
+.fish-card {
+    background-color: white;
+    width: 500px;
+    border-radius: 3em;
+    box-shadow: 5px 5px 5px #00000014;
+    padding: 10px 0px;
+}
+
+.fish-details h2 {
+    color: #05518b;
+    font-family: 'Klavika-Bold';
+    font-size: 1.2em;
+}
+
+.fish-details strong{
+    font-family: 'Klavika-Bold';
+}
+
+.fish-details p{
+    line-height: 0.5;
+}
+
+.fish-image{
+    margin-left: 20px;
+}
+
+.fish-card-link{
+    text-decoration: none;
+    color: black;
+}

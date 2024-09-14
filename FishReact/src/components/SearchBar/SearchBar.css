@@ -1,0 +1,60 @@
+.nav-search {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Center the search input */
+    margin-left: 20px;
+    min-width: 0; /* Added to allow shrinking below content size if needed */
+  }
+  
+  .search-form {
+    width: 75%; /* Ensure the form takes up all the available space */
+    justify-content: center;
+  }
+  
+  .search-input {
+    width: 100%;
+    max-width: 800px; /* Set max width to 800px */
+    padding: 8px 12px;
+    border-radius: 3em;
+    border: none;
+    font-size: calc(.8em + 0.5vw); /* Dynamic font size based on viewport width */
+    box-sizing: border-box;
+    transition: width 0.3s ease, font-size 0.3s ease;
+  }
+  
+  /* Responsive search input */
+  @media (max-width: 1200px) {
+    .search-input {
+      max-width: 600px;
+      font-size: calc(1.3em + 0.5vw);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .search-input {
+      max-width: 500px;
+      font-size: calc(1.2em + 0.5vw);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .search-input {
+      max-width: 400px;
+      font-size: calc(1em + 0.5vw);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .search-input {
+      max-width: 300px;
+      font-size: calc(0.9em + 0.5vw);
+    }
+  }
+  
+  /* Hide the search form when the screen width is 500px or less */
+  @media (max-width: 500px) {
+    .nav-search {
+      display: none;
+    }
+  }
+  

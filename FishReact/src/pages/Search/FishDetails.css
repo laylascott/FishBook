@@ -1,0 +1,57 @@
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin: auto;
+    box-shadow: 5px 5px 5px #00000014;
+}
+
+tr:nth-child(odd) th,
+tr:nth-child(odd) td {
+    background-color: #05518b6d;
+}
+
+th{
+    width: 15em;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #05518b6d;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-family: 'Klavika-Bold';
+}
+
+
+.fish-img {
+    margin: 3.125em;
+    width: 40%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 3em;
+    box-shadow: 5px 5px 5px #00000014;
+}
+
+
+.fish-detail-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.fish-info {
+    flex: 1;
+    /* Allows the text and table to take up the remaining space */
+}
+
+.fish-info h1 {
+    font-family: 'Klavika-Bold';
+    font-size: 46px;
+    margin-top: 75px;
+    margin-bottom: 20px;
+}
