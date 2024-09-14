@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.Fish.model.Fish;
 import com.example.Fish.repositories.FishRepository;
 
+import java.util.List;
 
 
 @Service
@@ -22,12 +23,17 @@ public class FishService {
         return fishRepository.findByCommonNameContainsOrderByCommonNameAsc(name);
     }
 
-    public Iterable<Fish> getBySpeciesGroup(String species) {
-        return fishRepository.findBySpeciesGroupContainsOrderByCommonNameAsc(species);
+    public Iterable<Fish> getByMultipleSpeciesGroups(List<String> speciesGroups) {
+        return fishRepository.findBySpeciesGroupInOrderByCommonNameAsc(speciesGroups);
     }
+
 
     public Fish getByID(String id){
         return fishRepository.findById(id);
+    }
+
+    public Iterable<String> getSpeciesGroups() {
+        return fishRepository.findAllDistinctSpeciesGroups();
     }
 
 }
