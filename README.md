@@ -1,4 +1,6 @@
-# FishBook
+# FishBook 
+<img src="https://drive.google.com/uc?id=1-gTJ8RmmuYMUi0u5RSUl0DeieszTX1hE" alt="FishBook Logo" width="100" height="100">
+
 VT Hacks 12 Project
 
 Domain Name Sponsered by MLH & GoDaddy: www.fishbook.wiki
