@@ -38,6 +38,7 @@
 
   .info-button {
     border: none;
+    background-color: white;
   }
   .info-icon {
     fill: #0766AD;

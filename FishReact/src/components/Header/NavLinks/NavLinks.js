@@ -33,7 +33,7 @@ function NavLinks({ isNavOpen, isMobileView, searchTerm, setSearchTerm, handleSe
         </div>
       )}
       <li><Link to="/browse" onClick={closeNav}>Browse Fish</Link></li>
-      <li><Link to="/forDevelopers" onClick={closeNav}>For Developers</Link></li>
+      <li><Link to="/get-started" onClick={closeNav}>Get Started</Link></li>
       <li><Link to="/aboutUs" onClick={closeNav}>About Us</Link></li>
     </ul>
   );

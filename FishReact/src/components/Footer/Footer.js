@@ -15,8 +15,8 @@ function Footer() {
           Browse Fish
         </NavLink>
         <span className="footer-separator">|</span>
-        <NavLink to="/forDevelopers" className="footer-link" activeClassName="active">
-          For Developers
+        <NavLink to="/get-started" className="footer-link" activeClassName="active">
+          Get Started
         </NavLink>
         <span className="footer-separator">|</span>
         <NavLink to="/aboutUs" className="footer-link" activeClassName="active">
