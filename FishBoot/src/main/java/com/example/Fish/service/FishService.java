@@ -27,6 +27,10 @@ public class FishService {
         return fishRepository.findBySpeciesGroupInOrderByCommonNameAsc(speciesGroups);
     }
 
+    public Iterable<Fish> getCompFishTankSize(int tankSize)
+    {
+        return fishRepository.findByMinTankSizeLessThanEqual(tankSize);
+    }
 
     public Fish getByID(String id){
         return fishRepository.findById(id);

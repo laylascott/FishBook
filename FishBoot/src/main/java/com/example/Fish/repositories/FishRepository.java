@@ -19,4 +19,7 @@ public interface FishRepository extends CrudRepository<Fish, Integer> {
     @Query("SELECT DISTINCT f.speciesGroup FROM Fish f ORDER BY f.speciesGroup ASC")
     Iterable<String> findAllDistinctSpeciesGroups();
 
+    // Find fish where the minimum tank size is less than or equal to the specified tank size
+    Iterable<Fish> findByMinTankSizeLessThanEqual(int tankSize);
+
 }

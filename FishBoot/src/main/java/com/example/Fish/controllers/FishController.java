@@ -40,6 +40,12 @@ public class FishController {
         return fishService.getByMultipleSpeciesGroups(List.of(speciesArray));
     }
 
+    @GetMapping(path = "/filter-by-tank-size")
+    public @ResponseBody Iterable<Fish> getFishByTankSize(@PathParam("tankSize") int tankSize) {
+        // Fetch fish where the minimum tank size is less than or equal to the selected tank size
+        return fishService.getCompFishTankSize(tankSize);
+    }
+
     @GetMapping(path = "/id")
     public @ResponseBody Fish getFishByID(@PathParam("Id") String id) {
         return fishService.getByID(id);

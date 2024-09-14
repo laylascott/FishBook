@@ -88,6 +88,9 @@ public class Fish {
     @Column(name = "\"Minimum Tank Size\"")
     private String minimumTankSize;
 
+    @Column(name = "\"Min Tank Size\"")
+    private int minTankSize;
+
     @Column(name = "\"Image\"")
     private String image;
 }
