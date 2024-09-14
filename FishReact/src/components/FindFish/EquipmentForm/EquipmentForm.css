@@ -1,0 +1,137 @@
+/* Container styles */
+.container {
+    padding: clamp(15px, 4vw, 30px); /* Responsive padding */
+    border-radius: clamp(1.5em, 3vw, 3em); /* Responsive border-radius */
+    max-width: clamp(300px, 90%, 475px); /* Max width with clamp */
+    background-color: #ffffff;
+    color: #05518b;
+    box-shadow: 5px 5px 5px #00000014;
+    text-align: left;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.small {
+    font-size: clamp(12px, 1vw, small); /* Responsive font size */
+    font-family: 'Klavika-Light', sans-serif;
+    margin-bottom: -10px;
+}
+
+.light {
+    font-family: 'Klavika-Medium', sans-serif;
+}
+
+.enabled {
+    background-color: #DAEFFF;
+    color: #05518b;
+}
+
+.disabled {
+    color: #383838;
+}
+
+.label{
+    background-color: white;
+}
+
+.disabled input {
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+.enabled input{
+    color: #05518b;
+    background-color: white;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-family: 'Klavika-Bold', sans-serif;
+    font-size: clamp(18px, 3vw, 24px); /* Responsive font size */
+}
+
+label {
+    font-family: 'Klavika-Bold', sans-serif;
+    font-size: clamp(14px, 1.5vw, 16px); /* Responsive label size */
+}
+
+.formGroup {
+    font-family: 'Klavika-Bold', sans-serif;
+    display: flex;
+    gap: clamp(10px, 3vw, 20px); /* Responsive gap */
+    flex-direction: row;
+    margin-bottom: clamp(10px, 3vw, 20px); /* Responsive margin */
+}
+
+.inches {
+    margin-left: clamp(-10px, -1vw, -22px); /* Responsive margin */
+}
+
+.formGroup div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(8px, 2vw, 12px); /* Responsive gap */
+}
+
+.newline::after {
+    content: "\a";
+    white-space: pre;
+}
+
+.dimensionInput {
+    width: clamp(50px, 4vw, 60px); /* Responsive input width */
+}
+
+.input,
+.select {
+    width: max-content;
+}
+
+.input,
+.select,
+.dimensionInput {
+    font-family: 'Klavika-Medium', sans-serif;
+    font-size: clamp(14px, 1.5vw, 16px); /* Responsive font size */
+    padding: clamp(6px, 1vw, 8px); /* Responsive padding */
+    border-radius: 5px;
+    margin-top: clamp(3px, 1vw, 5px); /* Responsive margin */
+}
+
+.radioTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: clamp(10px, 2vw, 20px); /* Responsive margin */
+    background-color: white;
+}
+
+.radioTable th,
+.radioTable td {
+    font-family: 'Klavika-Medium', sans-serif;
+    padding: clamp(8px, 2vw, 10px); /* Responsive padding */
+    text-align: center;
+    border: 1px solid #05518b;
+}
+
+.radioTable th {
+    background-color: #DAEFFF;
+}
+
+.radioTable td input {
+    margin: 0;
+}
+
+/* Media query for small screens */
+@media (max-width: 450px) {
+    .container {
+        margin: auto;
+        max-width: 375px;
+    }
+
+    .formGroup {
+        flex-direction: column;
+        gap: clamp(5px, 2vw, 10px); /* Responsive gap in column mode */
+    }
+}

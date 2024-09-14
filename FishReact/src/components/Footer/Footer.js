@@ -1,10 +1,28 @@
+// src/components/Footer/Footer.js
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
 function Footer() {
   return (
     <footer className="footer">
-      <p>&copy; 2024 Your Company Name</p>
+      <div className="footer-nav-links">
+        <NavLink to="/" className="footer-link" activeClassName="active">
+          Home
+        </NavLink>
+        <span className="footer-separator">|</span>
+        <NavLink to="/browse" className="footer-link" activeClassName="active">
+          Browse Fish
+        </NavLink>
+        <span className="footer-separator">|</span>
+        <NavLink to="/forDevelopers" className="footer-link" activeClassName="active">
+          For Developers
+        </NavLink>
+        <span className="footer-separator">|</span>
+        <NavLink to="/aboutUs" className="footer-link" activeClassName="active">
+          About Us
+        </NavLink>
+      </div>
     </footer>
   );
 }

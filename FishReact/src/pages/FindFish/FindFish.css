@@ -1,0 +1,101 @@
+.page-wrapper{
+    margin-top: 2em;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: space-between;
+}
+@media (max-width: 1500px) {
+    .row{
+        flex-direction: column;
+        gap: 20px;
+    }
+  }
+  
+/* Fading message styling */
+.fade-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the message */
+    background-color: #0765adc4; /* Semi-transparent black */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px; /* Oval background */
+    font-size: 1.5rem;
+    z-index: 9999; /* Highest z-index */
+    opacity: 0;
+    animation: fadeInOut 5s forwards;
+    font-family: 'Klavika-Medium';
+}
+
+/* Animation for fading in and out */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Style for the compatibility button */
+.check-compatibility-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.check-compatibility-btn {
+    background-color: #05518b;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-compatibility-btn:hover {
+    background-color: #033b68;
+}
+
+/* Style for the compatibility overlay */
+.compatibility-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.compatibility-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.close-overlay-btn {
+    background-color: #05518b;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.close-overlay-btn:hover {
+    background-color: #033b68;
+}
+
+  

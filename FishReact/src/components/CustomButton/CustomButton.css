@@ -1,0 +1,75 @@
+.custom-button {
+  width: 625px;
+  height: 325px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4.25em;
+  padding: 0px 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.custom-button img {
+  height: auto;
+  max-width: 17rem;
+  margin: 0 10px;
+}
+
+.custom-button.left img {
+  order: -1;
+  /* Ensures image is on the left if 'left' is selected */
+}
+
+.custom-button:hover {
+  transform: scale(1.05);
+  /* Scale up slightly on hover */
+}
+
+/* Button content styles */
+.button-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-title {
+  font-family: "Klavika-Bold";
+  font-size: larger;
+  margin-bottom: 10px;
+  color: #000000eb;
+}
+
+.button-text {
+  font-family: "Klavika-Medium";
+  font-size: large;
+  color: #000000eb;
+}
+
+/* Responsive scaling */
+
+@media (max-width: 768px) {
+  .custom-button {
+    width: 425px;
+    height: 225px;
+    font-size: 1rem;
+  }
+
+  .custom-button img {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-button {
+    width: 325px;
+    height: 262.5px;
+    font-size: 1rem;
+    flex-direction: column;
+  }
+
+  .custom-button img {
+    max-width: 140px;
+  }
+}

@@ -1,0 +1,150 @@
+/* Container for all species groups */
+.species-group-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Each row container */
+.species-group-row-container {
+    width: clamp(250px, 90vw, 1350px);
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 3em;
+    box-shadow: 5px 5px 5px #00000014;
+    overflow-x: auto; /* Ensure horizontal scrolling */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #0765ada4 #c0bebe96; /* Thumb color (first) and track color (second) for Firefox */
+    scroll-behavior: smooth;
+}
+.species-group-row-container::-webkit-scrollbar {
+    display: block; /* For WebKit browsers */
+}
+
+/* Row heading */
+.species-group-row-container h2 {
+    padding: 0 20px;
+    font-family: 'Klavika-Medium', sans-serif;
+    color: #05518b;
+    text-align: left;
+    width: max-content;
+}
+
+/* Fish group row */
+.fish-group-row {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping, enable scrolling */
+    height: min-content;
+    transition: height 0.3s ease;
+    padding-bottom: 10px; /* Adding some bottom padding */
+}
+
+.fish-group-row p1{
+    padding-left: 20px;
+    font-family: 'Klavika-Medium';
+}
+
+/* Individual fish container */
+.single-fish-from-group-container {
+    padding: clamp(10px, 2vw, 20px);
+    flex: 0 0 clamp(100px, 20vw, 200px);
+    margin: 0 clamp(5px, 1vw, 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Klavika-Light', sans-serif;
+    font-size: clamp(12px, 2vw, 18px);
+    transition: transform 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 20px; /* Adding more padding at the bottom */
+    position: relative;
+    pointer-events: auto; /* Ensure events propagate smoothly */
+    will-change: transform, height; /* Optimize for better performance */
+}
+
+.cart-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #05518b;
+    background-color: white;
+    border: solid 1px #05518b;
+    padding: 5px 2px;
+    border-radius: 12px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+.add-btn, .controls button{
+    background-color: white;
+    color: #05518b;
+    border: none;
+}
+
+/* Thumbnail image styling */
+.fish-thumbnail {
+    width: clamp(50px, 10vw, 100px); 
+    height: clamp(50px, 10vw, 100px); 
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: clamp(5px, 1vw, 10px); 
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 5px #00000014;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+/* Navigation arrows styling */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #05518b;
+    color: white;
+    border: none;
+    font-family: 'Klavika-Medium', sans-serif;
+    font-size: clamp(16px, 2vw, 24px);
+    padding: clamp(3px, 1vw, 5px) clamp(6px, 2vw, 10px); 
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 100px;
+}
+
+/* Left and right navigation arrow positioning */
+.nav-arrow.left {
+    left: clamp(5px, 1vw, 10px); 
+}
+
+.nav-arrow.right {
+    right: clamp(5px, 1vw, 10px); 
+}
+
+/* Disabled state for navigation arrows */
+.nav-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fish-name {
+    font-size: 0.9em;
+    max-height: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    transition: transform 0.3s ease; /* Smooth transition for movement */
+}
+
+/* Hover effect: Move the thumbnail and name */
+.single-fish-from-group-container:hover .fish-thumbnail,
+.single-fish-from-group-container:hover .fish-name {
+    transform: translateY(-5px); /* Move both thumbnail and name up by 5px */
+}
+
+/* Hover effect: Add shadow to the thumbnail */
+.single-fish-from-group-container:hover .fish-thumbnail {
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.459); /* Slightly larger shadow */
+}

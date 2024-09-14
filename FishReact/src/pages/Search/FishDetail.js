@@ -31,7 +31,7 @@ function FishDetail() {
                     <img src={fish.image || 'https://franklinchristianchurch.com/wp-content/uploads/2023/01/image-coming-soon.jpeg'} alt={fish.commonName} className="fish-img" />
                     <div className="fish-info">
                         <h1>{fish.commonName}</h1>
-                        <table>
+                        <table className='fishdetails-table'>
                             <tbody>
                                 <tr>
                                     <th>Scientific Name</th>

@@ -3,15 +3,54 @@
   background-color: #29ADB2;
   color: white;
   text-align: center;
-  padding: 10px 20px;
-  width: 100%; /* Ensure full width */
-  position: relative; /* Change from fixed to relative for better responsiveness */
+  padding: 2vb;
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
   bottom: 0;
+  user-select: none;
+  box-sizing: border-box;
 }
 
-/* Media query for larger screens */
-@media (min-width: 768px) {
-  .footer {
-    position: fixed; /* Fixed only on larger screens */
+.footer-nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap; /* Prevents links from wrapping to the next line */
+  max-width: 100%; /* Ensures the container does not exceed the viewport width */
+  box-sizing: border-box;
+  gap: calc(10px + 1vw); /* Dynamic gap based on viewport width */
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  white-space: nowrap; /* Prevents links from wrapping */
+  font-size: clamp(.5rem, 1.5vw, 1.3rem); /* Responsive font size using clamp */
+}
+
+.footer-link:hover {
+  color: #C5E898;
+}
+
+.footer-link.active {
+  font-weight: bold;
+}
+
+.footer-separator {
+  color: #ffffff;
+  font-size: clamp(1rem, 2vw, 3rem); /* Match the font size of the links */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .footer-nav-links {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-nav-links {
+    gap: 10px;
   }
 }

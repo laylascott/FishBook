@@ -12,6 +12,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Klavika-Medium';
+  src: url('../public/fonts/klavika-medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body, html {
   font-family: 'Klavika-Light', sans-serif;
   margin: 0;

@@ -1,4 +1,4 @@
-table {
+.fishdetails-table {
     width: 90%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -6,23 +6,23 @@ table {
     box-shadow: 5px 5px 5px #00000014;
 }
 
-tr:nth-child(odd) th,
-tr:nth-child(odd) td {
+.fishdetails-table tr:nth-child(odd) th,
+.fishdetails-table tr:nth-child(odd) td {
     background-color: #05518b6d;
 }
 
-th{
+.fishdetails-table th{
     width: 15em;
 }
 
-th,
-td {
+.fishdetails-table th,
+.fishdetails-table td {
     padding: 12px;
     text-align: left;
     border: 1px solid #05518b6d;
 }
 
-th {
+.fishdetails-table th {
     background-color: #f2f2f2;
     font-family: 'Klavika-Bold';
 }

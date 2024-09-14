@@ -1,0 +1,76 @@
+.fish-thumbnail {
+    width: clamp(50px, 10vw, 100px);
+    height: clamp(50px, 10vw, 100px);
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: clamp(5px, 1vw, 10px);
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 5px #00000014;
+}
+
+.cart {
+    width: clamp(600px, 80vw, 850px); /* Clamp applied to width */
+    padding: clamp(15px, 2vw, 30px); /* Clamp applied to padding */
+    border-radius: clamp(1.5em, 3vw, 3em); /* Responsive border-radius */
+    background-color: #ffffff;
+    color: #05518b;
+    box-shadow: 5px 5px 5px #00000014;
+    text-align: left;
+}
+
+.cart-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: clamp(5px, 2vw, 10px); /* Responsive spacing between grid items */
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.cart-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quantity-controls {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(8px, 1.5vw, 12px); /* Responsive gap */
+}
+
+.quantity-controls button {
+    object-fit: cover;
+    border-radius: 100px;
+    font-size: clamp(14px, 2vw, large); /* Responsive font size */
+    padding: clamp(5px, 1vw, 10px); /* Responsive padding */
+}
+
+.quantity-controls button, .remove-btn {
+    background-color: #05518b;
+    color: white;
+    border: none;
+    padding: clamp(5px, 1vw, 10px);
+}
+
+.remove-btn {
+    margin-top: clamp(3px, 1vw, 5px);
+    border-radius: 20px;
+    width: max-content;
+}
+
+@media (max-width: 450px) {
+    .cart {
+        margin: auto;
+        max-width: clamp(300px, 80vw, 350px); /* Clamp applied to max-width */
+    }
+    .formGroup {
+        flex-direction: column;
+    }
+    .cart-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on small screens */
+        gap: clamp(5px, 1vw, 10px); /* Clamp applied to gap */
+    }
+    p {
+        font-size: clamp(8px, 2vw, 12px); /* Responsive font size */
+    }
+}

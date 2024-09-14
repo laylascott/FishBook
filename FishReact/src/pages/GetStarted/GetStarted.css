@@ -1,0 +1,28 @@
+.get-started-container {
+  margin: auto;
+  padding: 20px;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 6rem;
+  /* Space between the buttons */
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 1375px) {
+  .button-wrapper {
+    flex-direction: column;
+    gap: 35px;
+    margin-bottom: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .button-wrapper {
+
+    gap: 15px;
+  }
+}
