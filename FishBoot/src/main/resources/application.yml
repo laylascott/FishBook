@@ -2,9 +2,9 @@ spring:
   application:
     name: FishBoot
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${DBUSER}
-    password: ${DBPASS}
+    url: jdbc:mysql://fish.cru6qs60kq5x.us-east-1.rds.amazonaws.com:3306/fish_schema
+    username: readfishdata
+    password: 2024Fish
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
