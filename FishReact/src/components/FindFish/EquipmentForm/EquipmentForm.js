@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './EquipmentForm.css';
 import InfoButton from "./InfoButton";
 
-function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
+function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange, onHeaterChange, onLivePlantsChange, onPumpChange }) {
     const tankData = {
         'Select Tank Size': { gallons: 0, length: 0, width: 0, height: 0 },
         '5.5 g': { gallons: 5.5, length: 17, width: 9, height: 11 },
@@ -18,12 +18,19 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
         '125 g': { gallons: 125, length: 73, width: 19, height: 24 },
         '150 g': { gallons: 150, length: 73, width: 19, height: 29 },
         '180 g': { gallons: 180, length: 73, width: 25, height: 26 },
+        '250 g': { gallons: 250, length: 0, width: 0, height: 0 },
+        '350 g': { gallons: 350, length: 0, width: 0, height: 0 },
+        '500 g': { gallons: 500, length: 0, width: 0, height: 0 },
+        '1000 g': { gallons: 1000, length: 0, width: 0, height: 0 },
+        '1500 g': { gallons: 1500, length: 0, width: 0, height: 0 },
+        '2000 g': { gallons: 2000, length: 0, width: 0, height: 0 },
+        '2500 g': { gallons: 2500, length: 0, width: 0, height: 0 },
     };
 
     const [tankSize, setTankSize] = useState('Select Tank Size');
     const [dimensions, setDimensions] = useState(tankData[tankSize]);
     const [gphValue, setGphValue] = useState(0); // Calculated GPH value based on gallons
-    const [heater, setHeater] = useState(null);
+    const [heater, setHeater] = useState(null); // Track heater selection
     const [plants, setPlants] = useState(null);
     const [pump, setPump] = useState(null);
 
@@ -47,11 +54,13 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
         onMandatoryFieldsFilled(mandatoryFieldsFilled);
     }, [tankSize, onMandatoryFieldsFilled]);
 
-    const handleRadioChange = (currentValue, setter, value) => {
+    const handleRadioChange = (currentValue, setter, value, callback) => {
         if (currentValue === value) {
             setter(null);
+            if (callback) callback(null); // Notify parent if necessary
         } else {
             setter(value);
+            if (callback) callback(value); // Notify parent if necessary
         }
     };
 
@@ -141,7 +150,7 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
                                 name="heater"
                                 value="true"
                                 checked={heater === true}
-                                onChange={() => handleRadioChange(heater, setHeater, true)}
+                                onChange={() => handleRadioChange(heater, setHeater, true, onHeaterChange)}
                             />
                         </td>
                         <td>
@@ -151,7 +160,7 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
                                 name="heater"
                                 value="false"
                                 checked={heater === false}
-                                onChange={() => handleRadioChange(heater, setHeater, false)}
+                                onChange={() => handleRadioChange(heater, setHeater, false, onHeaterChange)}
                             />
                         </td>
                     </tr>
@@ -164,7 +173,7 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
                                 name="plants"
                                 value="true"
                                 checked={plants === true}
-                                onChange={() => handleRadioChange(plants, setPlants, true)}
+                                onChange={() => handleRadioChange(plants, setPlants, true, onLivePlantsChange)}
                             />
                         </td>
                         <td>
@@ -174,7 +183,7 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
                                 name="plants"
                                 value="false"
                                 checked={plants === false}
-                                onChange={() => handleRadioChange(plants, setPlants, false)}
+                                onChange={() => handleRadioChange(plants, setPlants, false, onLivePlantsChange)}
                             />
                         </td>
                     </tr>
@@ -187,7 +196,7 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
                                 name="pump"
                                 value="true"
                                 checked={pump === true}
-                                onChange={() => handleRadioChange(pump, setPump, true)}
+                                onChange={() => handleRadioChange(pump, setPump, true, onPumpChange)}
                             />
                         </td>
                         <td>
@@ -197,7 +206,7 @@ function TankDetailsForm({ onMandatoryFieldsFilled, onTankSizeChange }) {
                                 name="pump"
                                 value="false"
                                 checked={pump === false}
-                                onChange={() => handleRadioChange(pump, setPump, false)}
+                                onChange={() => handleRadioChange(pump, setPump, false, onPumpChange)}
                             />
                         </td>
                     </tr>

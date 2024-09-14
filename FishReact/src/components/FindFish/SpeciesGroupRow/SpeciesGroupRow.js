@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './SpeciesGroupRow.css';
 
-function SpeciesGroupRow({ addToCart, selectedTankSize }) {
+function SpeciesGroupRow({ addToCart, selectedTankSize, heaterRequired, livePlantsRequired, pumpRequired }) {
     const [speciesGroups, setSpeciesGroups] = useState([]);
-    const [fishData, setFishData] = useState({});
+    const [filteredFishData, setFilteredFishData] = useState({});
+    const [allFishData, setAllFishData] = useState({});
     const [loading, setLoading] = useState(true);
     const [quantities, setQuantities] = useState({});
 
+    // Fetch fish data based on tank size
     useEffect(() => {
         if (selectedTankSize > 0) {
             const fetchAllData = async () => {
                 setLoading(true);
                 try {
-                    // Fetch fish that meet the selected tank size requirement
                     const fishResponse = await axios.get('http://localhost:8080/fish/filter-by-tank-size', {
                         params: { tankSize: selectedTankSize }
                     });
@@ -23,13 +24,13 @@ function SpeciesGroupRow({ addToCart, selectedTankSize }) {
                     const groups = speciesResponse.data;
                     setSpeciesGroups(groups);
 
-                    // Organize fish data by species group
                     const newFishData = {};
                     groups.forEach(group => {
                         newFishData[group] = fish.filter(f => f.speciesGroup === group);
                     });
 
-                    setFishData(newFishData);
+                    setAllFishData(newFishData);
+                    setFilteredFishData(newFishData);
                 } catch (error) {
                     console.error('Error fetching species groups and fish data:', error);
                 } finally {
@@ -40,6 +41,56 @@ function SpeciesGroupRow({ addToCart, selectedTankSize }) {
             fetchAllData();
         }
     }, [selectedTankSize]);
+
+    // Heater Filter
+    const filterByHeater = useCallback((fish) => {
+        const avgTemp = fish.averageTemp;
+        if (heaterRequired === null || avgTemp === undefined) return true; // No filter applied
+        if (heaterRequired && avgTemp < 72) return false; // Needs heater but fish is < 72°F
+        if (!heaterRequired && avgTemp >= 72) return false; // No heater but fish is >= 72°F
+        return true;
+    }, [heaterRequired]);
+
+    // Live Plants Filter
+    const filterByLivePlants = useCallback((fish) => {
+        if (livePlantsRequired === null) return true; // No filter applied
+        const hasLivePlants = fish.livePlants === 'Yes';
+        if (livePlantsRequired && !hasLivePlants) return false; // Needs live plants but fish doesn't support it
+        //if (!livePlantsRequired && hasLivePlants) return false; // No live plants but fish needs it
+        return true;
+    }, [livePlantsRequired]);
+
+    // Circulation Pump Filter
+    const filterByPump = useCallback((fish) => {
+        if (pumpRequired === null) return true; // No filter applied
+        const waterCurrent = fish.waterCurrent;
+        if (pumpRequired && waterCurrent === 'Low') return false; // Needs pump but fish prefers Low
+        if (!pumpRequired && waterCurrent === 'Strong') return false; // No pump but fish prefers Strong
+        return true;
+    }, [pumpRequired]);
+
+    // Apply all filters
+    useEffect(() => {
+        const applyAllFilters = () => {
+            if (selectedTankSize > 0) {
+                const newFilteredFishData = {};
+
+                Object.keys(allFishData).forEach(group => {
+                    newFilteredFishData[group] = allFishData[group].filter(fish => {
+                        return (
+                            filterByHeater(fish) &&
+                            filterByLivePlants(fish) &&
+                            filterByPump(fish)
+                        );
+                    });
+                });
+
+                setFilteredFishData(newFilteredFishData);
+            }
+        };
+
+        applyAllFilters();
+    }, [heaterRequired, livePlantsRequired, pumpRequired, allFishData, selectedTankSize, filterByHeater, filterByLivePlants, filterByPump]);
 
     const increaseQuantity = (fishId) => {
         setQuantities((prevQuantities) => ({
@@ -65,8 +116,8 @@ function SpeciesGroupRow({ addToCart, selectedTankSize }) {
                         <div key={index} className='species-group-row-container'>
                             <h2>{groupName}</h2>
                             <div className='fish-group-row'>
-                                {fishData[groupName] && fishData[groupName].length > 0 ? (
-                                    fishData[groupName].map((fish, fishIndex) => (
+                                {filteredFishData[groupName] && filteredFishData[groupName].length > 0 ? (
+                                    filteredFishData[groupName].map((fish, fishIndex) => (
                                         <div
                                             key={fishIndex}
                                             className='single-fish-from-group-container'>
@@ -89,7 +140,7 @@ function SpeciesGroupRow({ addToCart, selectedTankSize }) {
                                         </div>
                                     ))
                                 ) : (
-                                    <p1>{groupName} require a larger tank size.</p1>
+                                    <p1>No fish available in {groupName} for the selected conditions.</p1>
                                 )}
                             </div>
                         </div>

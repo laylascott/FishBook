@@ -11,6 +11,11 @@ function FindFish() {
     const [showMessage, setShowMessage] = useState(true); // Control the message display
     const [showCompatibility, setShowCompatibility] = useState(false); // Control the visibility of the overlay
 
+    // Optional Fields State
+    const [heaterRequired, setHeaterRequired] = useState(null);
+    const [livePlantsRequired, setLivePlantsRequired] = useState(null);
+    const [pumpRequired, setPumpRequired] = useState(null);
+
     const addToCart = (fish) => {
         setCart((prevCart) => {
             const existingCartItem = prevCart.find(item => item.cartItemId === fish.id);
@@ -78,6 +83,9 @@ function FindFish() {
                 <Form 
                     onMandatoryFieldsFilled={(filled) => setMandatoryFieldsFilled(filled)} 
                     onTankSizeChange={(size) => setSelectedTankSize(size)} // Pass selected tank size
+                    onHeaterChange={setHeaterRequired} // Pass heater selection
+                    onLivePlantsChange={setLivePlantsRequired} // Pass live plants selection
+                    onPumpChange={setPumpRequired} // Pass pump selection
                 />
                 <Cart
                     cartItems={cart}
@@ -110,8 +118,16 @@ function FindFish() {
                 </div>
             )}
 
-            {/* Pass selected tank size to SpeciesGroupRow */}
-            {mandatoryFieldsFilled && <SpeciesGroupRow addToCart={addToCart} selectedTankSize={selectedTankSize} />}
+            {/* Pass selected tank size and optional filters to SpeciesGroupRow */}
+            {mandatoryFieldsFilled && 
+                <SpeciesGroupRow 
+                    addToCart={addToCart} 
+                    selectedTankSize={selectedTankSize} 
+                    heaterRequired={heaterRequired}
+                    livePlantsRequired={livePlantsRequired}
+                    pumpRequired={pumpRequired}
+                />
+            }
         </div>
     );
 }

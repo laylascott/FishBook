@@ -43,6 +43,9 @@ public class Fish {
     @Column(name = "\"Temperature\"")
     private String temperature;
 
+    @Column(name = "\"Average Temp In F\"")
+    private int averageTemp;
+
     @Column(name = "\"Hardness (GH)\"")
     private String hardnessGH;
 
