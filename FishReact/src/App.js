@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
-import ForDevelopers from './pages/ForDevelopers/ForDevelopers';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Search from './pages/Search/Search'
 import FishDetail from  './pages/Search/FishDetail';
@@ -17,7 +16,6 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/forDevelopers" element={<ForDevelopers />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/find-fish" element={<FindFishPage />} />
