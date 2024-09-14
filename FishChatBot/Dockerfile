@@ -14,7 +14,6 @@ ENV DBPASS=fish123
 ENV DBHOST=fish.cru6qs60kq5x.us-east-1.rds.amazonaws.com
 ENV DBPORT=3306
 ENV DBSCHEMA=fish_schema
-ENV OPENAI_API_KEY=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
 
 # Expose port 8000 for FastAPI
 EXPOSE 8000
