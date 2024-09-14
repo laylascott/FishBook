@@ -1,12 +1,12 @@
 // bioLoadCalculator.js
-const highSpecies = ["goldfish", "koi", "African cichlids", "American cichlids", "Arowana", "Bichir", "monster", "snakehead", "synos"];
-const lowSpecies = ["invertebrates", "barbs", "bettas", "corys", "danios", "loaches", "rasboras", "tetra"];
+const highSpecies = ["Goldfish", "Koi", "African cichlids", "American cichlids", "Arowana", "Bichir", "Monster", "Snakehead", "Synos"];
+const lowSpecies = ["Invertebrates", "Barbs", "Bettas", "Cory", "Danios", "Loaches", "Rasboras", "Tetras"];
 
 export const getSpeciesFactor = (fish) => {
-    const speciesGroup = fish.speciesGroup.toLowerCase();
-    if (highSpecies.includes(speciesGroup)) {
+    const spGroup = fish.speciesGroup
+    if (highSpecies.includes(spGroup)) {
         return 1.5;
-    } else if (lowSpecies.includes(speciesGroup)) {
+    } else if (lowSpecies.includes(spGroup)) {
         return 0.8;
     }
     return 1; // Default species factor
@@ -23,10 +23,10 @@ export const getActivityFactor = (fish) => {
 };
 
 export const getDietFactor = (fish) => {
-    const dietType = fish.dietType?.toLowerCase();
-    if (dietType === "carnivore") {
+    const dietType = fish.dietType
+    if (dietType === "Carnivore") {
         return 1.2;
-    } else if (dietType === "omnivore") {
+    } else if (dietType === "Omnivore") {
         return 0.8;
     }
     return 1;
