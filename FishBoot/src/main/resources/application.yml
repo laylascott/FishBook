@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: FishBoot
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${DBUSER}
+    password: ${DBPASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
