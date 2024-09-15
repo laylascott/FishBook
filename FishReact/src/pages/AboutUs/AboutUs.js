@@ -18,7 +18,7 @@ function AboutUs() {
         />
         <InfoSection
           title="Prinston Rebello"
-          description="MS in Computer Science @ IU Bloomington"
+          description="MS in Computer Science @ Indiana University Bloomington"
           imageSrc="/images/prinston.jpg"
           isImageLeft={true}  // To align the image on the left side
         />
