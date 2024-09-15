@@ -108,7 +108,7 @@ function SpeciesGroupRow({ addToCart, selectedTankSize, heaterRequired, livePlan
     };
 
     return (
-        <div className='species-group-container'>
+       <div className='species-group-container'>
             {loading ? (
                 <p>Loading species groups and fish data...</p>
             ) : (
@@ -128,7 +128,7 @@ function SpeciesGroupRow({ addToCart, selectedTankSize, heaterRequired, livePlan
                                                 src={fish.image || 'https://franklinchristianchurch.com/wp-content/uploads/2023/01/image-coming-soon.jpeg'}
                                                 alt={fish.commonName}
                                             />
-                                           <CartButtons
+                                            <CartButtons
                                                 fish={fish}
                                                 quantities={quantities}
                                                 addToCart={addToCart}
