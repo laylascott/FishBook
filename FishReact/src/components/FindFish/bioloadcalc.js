@@ -1,13 +1,13 @@
 // bioLoadCalculator.js
 const highSpecies = ["Goldfish", "Koi", "African cichlids", "American cichlids", "Arowana", "Bichir", "Monster", "Snakehead", "Synos"];
-const lowSpecies = ["Invertebrates", "Barbs", "Bettas", "Cory", "Danios", "Loaches", "Rasboras", "Tetras"];
+const lowSpecies = ["Invertebrates", "Barbs", "Cory", "Bettas", "Danios", "Loaches", "Rasboras", "Tetras"];
 
 export const getSpeciesFactor = (fish) => {
     const spGroup = fish.speciesGroup
     if (highSpecies.includes(spGroup)) {
         return 1.5;
     } else if (lowSpecies.includes(spGroup)) {
-        return 0.8;
+        return 0.95;
     }
     return 1; // Default species factor
 };
@@ -32,10 +32,25 @@ export const getDietFactor = (fish) => {
     return 1;
 };
 
+const extractAdultSize = (sizeString) => {
+    const match = sizeString.match(/[\d.]+/); // Match the first number (integer or decimal)
+    return match ? parseFloat(match[0]) : null; // Convert it to a float and return
+};
+
+// Species, activity, diet, and size weights
+const SPECIES_WEIGHT = 0.40;  // 40%
+const ACTIVITY_WEIGHT = 0.20; // 20%
+const DIET_WEIGHT = 0.15;    // 15%
+const SIZE_WEIGHT = 0.25;    // 25%
+
+// Weighted bio load calculation
 export const calculateBioLoad = (fish, quantity, plantFactor) => {
-    const speciesFactor = getSpeciesFactor(fish);
-    const activityFactor = getActivityFactor(fish);
-    const dietFactor = getDietFactor(fish);
-    const adultSize = fish.adultSize || 1;
-    return (plantFactor * speciesFactor * activityFactor * dietFactor * adultSize * quantity) / 10;
+    const weightedSpecies = getSpeciesFactor(fish) * SPECIES_WEIGHT;
+    const weightedActivity = getActivityFactor(fish) * ACTIVITY_WEIGHT;
+    const weightedDiet = getDietFactor(fish) * DIET_WEIGHT;
+    const weightedSize = extractAdultSize(fish.maximumAdultSize) * SIZE_WEIGHT;
+
+
+    // Total bio load based on weighted factors
+    return (plantFactor * (weightedSpecies + weightedActivity + weightedDiet + weightedSize)) * quantity;
 };

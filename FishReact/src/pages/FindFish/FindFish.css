@@ -40,6 +40,20 @@
     100% { opacity: 0; }
 }
 
+.final-message {
+    font-family: 'Klavika-Medium';
+    
+}
+
+.success-text {
+    color: green;
+}
+
+.failure-text {
+    color: red;
+}
+
+
 /* Style for the compatibility button */
 .check-compatibility-container {
     display: flex;
@@ -82,6 +96,11 @@
     width: 80%;
     max-width: 600px;
     text-align: center;
+    font-family: 'Klavika-Light';
+}
+
+strong{
+    font-family: 'Klavika-Medium';
 }
 
 .close-overlay-btn {
