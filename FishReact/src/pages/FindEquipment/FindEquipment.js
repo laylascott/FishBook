@@ -173,18 +173,49 @@ function FindEquipment() {
             )}
 
             {showCompatibility && (
-              <div className="modal">
+              <div className='modal'>
                 <div className="modal-content">
                   <h2>Compatibility Check</h2>
-                  <p><strong>Temperament:</strong> {compatibilityResults.issues.temperament ? compatibilityResults.issues.temperament : 'All fish are temperamentally compatible'}</p>
-                  <p><strong>Diet Compatibility:</strong> {compatibilityResults.issues.diet ? compatibilityResults.issues.diet : 'All fish have compatible diets'}</p>
-                  <p><strong>Ideal Number:</strong> {compatibilityResults.issues.idealNumber ? compatibilityResults.issues.idealNumber : 'Ideal numbers are met for all fish'}</p>
+
+                  {/* Temperament Check */}
+                  <p>
+                    <strong>Temperament:</strong>
+                    <span className={compatibilityResults.issues.temperament ? 'failure-text' : ''}>
+                      {compatibilityResults.issues.temperament
+                        ? compatibilityResults.issues.temperament
+                        : 'All fish are temperamentally compatible'}
+                    </span>
+                  </p>
+
+                  {/* Diet Compatibility Check */}
+                  <p>
+                    <strong>Diet Compatibility:</strong>
+                    <span className={compatibilityResults.issues.diet ? 'failure-text' : ''}>
+                      {compatibilityResults.issues.diet
+                        ? compatibilityResults.issues.diet
+                        : 'All fish have compatible diets'}
+                    </span>
+                  </p>
+
+                  {/* Ideal Number Check */}
+                  <p>
+                    <strong>Ideal Number:</strong>
+                    <span className={compatibilityResults.issues.idealNumber ? 'failure-text' : ''}>
+                      {compatibilityResults.issues.idealNumber
+                        ? compatibilityResults.issues.idealNumber
+                        : 'Ideal numbers are met for all fish'}
+                    </span>
+                  </p>
+
+                  {/* Final Message */}
                   <p className={`final-message ${compatibilityResults.success ? 'success-text' : 'failure-text'}`}>
                     {compatibilityResults.finalMessage}
                   </p>
+
                   <button className="close-modal-btn" onClick={handleCloseCompatibility}>Close</button>
                 </div>
               </div>
+
             )}
           </div>
         </div>

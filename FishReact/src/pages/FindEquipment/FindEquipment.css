@@ -47,3 +47,11 @@
     margin-top: 10px;
   }
   
+  .failure-text {
+    font-weight: bold;
+    color: red;
+  }
+  
+  .success-text {
+    color: green;
+  }
