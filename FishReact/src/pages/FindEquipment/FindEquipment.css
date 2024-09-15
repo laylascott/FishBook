@@ -1,0 +1,49 @@
+.recommendations{
+    padding: clamp(15px, 4vw, 53px); /* Responsive padding */
+    border-radius: clamp(1.5em, 3vw, 3em); /* Responsive border-radius */
+    max-width: clamp(300px, 90%, 550px); /* Max width with clamp */
+    background-color: #ffffff;
+    color: #05518b;
+    box-shadow: 5px 5px 5px #00000014;
+    text-align: left;
+}
+
+.row{
+    margin-top: 40px;
+}
+/* Modal background overlay */
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal content */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .close-modal-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  

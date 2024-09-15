@@ -1,5 +1,4 @@
-import { calculateBioLoad } from '../../components/FindFish/bioloadcalc';  // Ensure this is correctly imported
-
+import { calculateBioLoad } from '../../components/FindFish/bioloadcalc'; 
 export function checkCompatibility(cartItems, tankSize) {
     const results = {
         compatible: true,
