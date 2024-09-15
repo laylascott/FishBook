@@ -3,7 +3,10 @@ import SpeciesGroupRow from '../../components/FindFish/SpeciesGroupRow/SpeciesGr
 import Form from '../../components/FindFish/EquipmentForm/EquipmentForm';
 import Cart from '../../components/FindFish/Cart/Cart';
 import './FindFish.css';
-import { checkCompatibility } from './compatibilityChecker'; // Import the compatibility checker
+import { checkCompatibility } from './compatibilityChecker';
+import { calculateBioLoad } from '../../components/FindFish/bioloadcalc';
+import { PieChart, Pie, Cell, Legend, Label } from 'recharts';
+
 
 function FindFish() {
     const [cart, setCart] = useState([]);
@@ -64,6 +67,15 @@ function FindFish() {
         return () => clearTimeout(timer);
     }, [cart]);
 
+    const plantFactor = livePlantsRequired ? 0.9 : 1;
+    const totalBioLoad = cart.reduce((total, item) => {
+        return total + calculateBioLoad(item, item.quantity, plantFactor);
+    }, 0);
+
+    const tankStockPercentage = (totalBioLoad / selectedTankSize) * 100;
+    const remainingCapacity = 100 - tankStockPercentage;
+
+
     return (
         <div className='page-wrapper'>
             {showMessage && (
@@ -87,19 +99,52 @@ function FindFish() {
                     tankSize={selectedTankSize}
                     handleCheckCompatibility={handleCheckCompatibility}
                 />
+
             </div>
 
             {showCompatibility && (
                 <div className="compatibility-overlay">
                     <div className="compatibility-content">
                         <h2>Compatibility Results</h2>
+                        <PieChart width={350} height={350} className='chart'>
+                            <Pie
+                                data={[
+                                    { name: 'Tank Stock', value: tankStockPercentage > 0 ? tankStockPercentage : 0 },
+                                    { name: 'Remaining Capacity', value: remainingCapacity > 0 ? remainingCapacity : 0 }
+                                ]}
+                                cx={150}
+                                cy={150}
+                                innerRadius={100}
+                                outerRadius={150}
+                                paddingAngle={5}
+                                dataKey="value"
+                            >
+                                {/* Change color based on compatibility */}
+                                <Cell fill={compatibilityResults.success ? "#7d9e54" : "#033b68"} />
+                                <Cell fill="#8B8B8B" />
+
+                                {/* Add label in the center to show tank stock percentage */}
+                                <Label
+                                    value={`${tankStockPercentage.toFixed(0)}% \n Stocked`}
+                                    position="center"
+                                    fill="#000"
+                                    fontSize={20}
+                                    fontWeight="bold"
+                                />
+                            </Pie>
+
+                            <Legend layout="horizontal" align="center" verticalAlign="bottom" iconType="circle" />
+                        </PieChart>
+
+
+
                         {compatibilityResults ? (
-                            <div>
+                            <div className='results'>
                                 <p><strong>Water Changes:</strong> {compatibilityResults.issues.waterChanges}</p>
                                 <p><strong>Temperament:</strong> {compatibilityResults.issues.temperament ? compatibilityResults.issues.temperament : 'All fish are temperamentally compatible'}</p>
                                 <p><strong>Diet Compatibility:</strong> {compatibilityResults.issues.diet ? compatibilityResults.issues.diet : 'All fish have compatible diets'}</p>
                                 <p><strong>Ideal Number:</strong> {compatibilityResults.issues.idealNumber ? compatibilityResults.issues.idealNumber : 'Ideal numbers are met for all fish'}</p>
-                                
+
                                 {/* Display the final message with conditional text color */}
                                 <p
                                     className={`final-message ${compatibilityResults.success ? 'success-text' : 'failure-text'}`}
@@ -107,6 +152,7 @@ function FindFish() {
                                     {compatibilityResults.finalMessage}
                                 </p>
                             </div>
+
                         ) : (
                             <p>Calculating compatibility...</p>
                         )}
