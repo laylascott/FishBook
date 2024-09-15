@@ -46,11 +46,11 @@
 }
 
 .success-text {
-    color: green;
+    color: #7d9e54;
 }
 
 .failure-text {
-    color: red;
+    color: #033b68;
 }
 
 
@@ -115,4 +115,15 @@ strong{
 
 .close-overlay-btn:hover {
     background-color: #033b68;
+}
+
+.chart{
+    margin: auto;
+}
+.results{
+    margin: auto;
+    text-align: left;
+}
+.final-message{
+    text-align: center;
 }
