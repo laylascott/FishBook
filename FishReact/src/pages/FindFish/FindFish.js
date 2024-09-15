@@ -3,13 +3,15 @@ import SpeciesGroupRow from '../../components/FindFish/SpeciesGroupRow/SpeciesGr
 import Form from '../../components/FindFish/EquipmentForm/EquipmentForm';
 import Cart from '../../components/FindFish/Cart/Cart';
 import './FindFish.css';
+import { checkCompatibility } from './compatibilityChecker'; // Import the compatibility checker
 
 function FindFish() {
     const [cart, setCart] = useState([]);
     const [mandatoryFieldsFilled, setMandatoryFieldsFilled] = useState(false);
-    const [selectedTankSize, setSelectedTankSize] = useState(0); // Track the selected tank size
-    const [showMessage, setShowMessage] = useState(true); // Control the message display
-    const [showCompatibility, setShowCompatibility] = useState(false); // Control the visibility of the overlay
+    const [selectedTankSize, setSelectedTankSize] = useState(0);
+    const [showMessage, setShowMessage] = useState(true);
+    const [showCompatibility, setShowCompatibility] = useState(false);
+    const [compatibilityResults, setCompatibilityResults] = useState(null);
 
     // Optional Fields State
     const [heaterRequired, setHeaterRequired] = useState(null);
@@ -44,12 +46,9 @@ function FindFish() {
         );
     };
 
-    const removeFromCart = (cartItemId) => {
-        setCart((prevCart) => prevCart.filter(item => item.cartItemId !== cartItemId));
-    };
-
-    // Show or hide the compatibility overlay
     const handleCheckCompatibility = () => {
+        const results = checkCompatibility(cart, selectedTankSize); // Call the compatibility checker
+        setCompatibilityResults(results); // Store the results
         setShowCompatibility(true); // Show the overlay
     };
 
@@ -57,22 +56,16 @@ function FindFish() {
         setShowCompatibility(false); // Hide the overlay
     };
 
-    // Include `cart` in the dependency array to remove the warning
     useEffect(() => {
-        console.log('Cart items:', cart);
-
-        // Hide the message after 3 seconds
         const timer = setTimeout(() => {
             setShowMessage(false);
         }, 5000);
 
-        // Clear the timer if the component unmounts
         return () => clearTimeout(timer);
-    }, [cart]); // Added `cart` as a dependency
+    }, [cart]);
 
     return (
         <div className='page-wrapper'>
-            {/* Fading message */}
             {showMessage && (
                 <div className="fade-message">
                     Select Tank Size To Begin
@@ -80,37 +73,43 @@ function FindFish() {
             )}
 
             <div className='row'>
-                <Form 
-                    onMandatoryFieldsFilled={(filled) => setMandatoryFieldsFilled(filled)} 
-                    onTankSizeChange={(size) => setSelectedTankSize(size)} // Pass selected tank size
-                    onHeaterChange={setHeaterRequired} // Pass heater selection
-                    onLivePlantsChange={setLivePlantsRequired} // Pass live plants selection
-                    onPumpChange={setPumpRequired} // Pass pump selection
+                <Form
+                    onMandatoryFieldsFilled={(filled) => setMandatoryFieldsFilled(filled)}
+                    onTankSizeChange={(size) => setSelectedTankSize(size)}
+                    onHeaterChange={setHeaterRequired}
+                    onLivePlantsChange={setLivePlantsRequired}
+                    onPumpChange={setPumpRequired}
                 />
                 <Cart
                     cartItems={cart}
                     updateCartItemQuantity={updateCartItemQuantity}
-                    removeFromCart={removeFromCart}
+                    livePlantsRequired={livePlantsRequired}
+                    tankSize={selectedTankSize}
+                    handleCheckCompatibility={handleCheckCompatibility}
                 />
             </div>
 
-            {/* Button to check compatibility */}
-            {cart.length > 0 && (
-                <div className="check-compatibility-container">
-                    <button className="check-compatibility-btn" onClick={handleCheckCompatibility}>
-                        Check Compatibility
-                    </button>
-                </div>
-            )}
-
-            {/* Compatibility overlay */}
             {showCompatibility && (
                 <div className="compatibility-overlay">
                     <div className="compatibility-content">
                         <h2>Compatibility Results</h2>
-                        {/* Here, you would render the compatibility logic based on the fish in the cart */}
-                        <p>Displaying compatibility results for your selected fish...</p>
-                        {/* Close button */}
+                        {compatibilityResults ? (
+                            <div>
+                                <p><strong>Water Changes:</strong> {compatibilityResults.issues.waterChanges}</p>
+                                <p><strong>Temperament:</strong> {compatibilityResults.issues.temperament ? compatibilityResults.issues.temperament : 'All fish are temperamentally compatible'}</p>
+                                <p><strong>Diet Compatibility:</strong> {compatibilityResults.issues.diet ? compatibilityResults.issues.diet : 'All fish have compatible diets'}</p>
+                                <p><strong>Ideal Number:</strong> {compatibilityResults.issues.idealNumber ? compatibilityResults.issues.idealNumber : 'Ideal numbers are met for all fish'}</p>
+                                
+                                {/* Display the final message with conditional text color */}
+                                <p
+                                    className={`final-message ${compatibilityResults.success ? 'success-text' : 'failure-text'}`}
+                                >
+                                    {compatibilityResults.finalMessage}
+                                </p>
+                            </div>
+                        ) : (
+                            <p>Calculating compatibility...</p>
+                        )}
                         <button className="close-overlay-btn" onClick={handleCloseCompatibility}>
                             Close
                         </button>
@@ -118,11 +117,10 @@ function FindFish() {
                 </div>
             )}
 
-            {/* Pass selected tank size and optional filters to SpeciesGroupRow */}
-            {mandatoryFieldsFilled && 
-                <SpeciesGroupRow 
-                    addToCart={addToCart} 
-                    selectedTankSize={selectedTankSize} 
+            {mandatoryFieldsFilled &&
+                <SpeciesGroupRow
+                    addToCart={addToCart}
+                    selectedTankSize={selectedTankSize}
                     heaterRequired={heaterRequired}
                     livePlantsRequired={livePlantsRequired}
                     pumpRequired={pumpRequired}
